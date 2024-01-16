@@ -1,11 +1,11 @@
-import "dotenv/config"
+import 'dotenv/config'
 
 const config = {
-  USER: "postgres",
-  HOST: "localhost",
-  DB: "tracky",
+  USER: 'postgres',
+  HOST: 'localhost',
+  DB: 'tracky',
   PASSWORD: process.env.DB_PASSWORD,
-  dialect: "postgres",
+  dialect: 'postgres',
   port: 5432,
   pool: {
     max: 5,

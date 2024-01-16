@@ -30,7 +30,7 @@ db.sequelize.sync({ alter: true }).then(() => {
 
 app.use('/api/users', userRouter)
 app.use('/api/trackers', userAuth.authorization, trackerRouter)
-app.use('/api/options', optionRouter)
+app.use('/api/options', userAuth.authorization, optionRouter)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}.`)
