@@ -7,6 +7,7 @@ const JWTStrategy = passportJWT.Strategy
 
 const User = db.users
 const Tracker = db.trackers
+const Option = db.options
 
 /**
  * A middleware for checking if the username is already taken.
@@ -93,20 +94,20 @@ const checkOptionsBeforeUpdateOrDelete = async (req, res, next) => {
   }
 
 
-  const userId = req.userId
+  const userId = parseInt(req.userId)
   const optionId = parseInt(req.params.id)
 
   const option = await Option.findOne({
     where: {
       id: optionId
-    }
+    }, include: [Tracker]
   })
 
   if (!option) {
     return res.status(404).send({ message: `Option ${optionId} not found` })
   }
 
-  if (userId !== option.userId) {
+  if (userId !== option.tracker.dataValues.userId) {
     return res.status(403).send({ message: `Unauthorized: Option ${optionId} not yours` })
   }
 

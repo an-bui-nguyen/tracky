@@ -18,6 +18,7 @@ const userRouter = express.Router()
 
 
 const User = db.users
+const Tracker = db.trackers
 
 const signup = async (req, res) => {
   try {
@@ -168,13 +169,6 @@ const protectedRoute = (req, res) => {
   })
 }
 
-const getAllUsers = async (req, res) => {
-  const users = await User.findAll()
-  console.log(users.every(user => user instanceof User))
-  res.json(users)
-}
-
-userRouter.get('/all', getAllUsers)
 userRouter.post('/signup', userAuth.saveUser, signup)
 userRouter.post('/login', login)
 userRouter.get('/logout', logout)

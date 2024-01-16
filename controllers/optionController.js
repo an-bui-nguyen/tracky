@@ -18,7 +18,7 @@ optionRouter.get('/all', async (req, res) => {
 /**
  * A POST method for creating new options for associated tracker Id.
  */
-optionRouter.post('/:id', userAuth.checkOptionsBeforeUpdateOrDelete, async (req, res) => {
+optionRouter.post('/:id', userAuth.checkBeforeUpdateOrDelete, async (req, res) => {
   let options = req.body.options
   const trackerId = req.params.id
 
@@ -45,7 +45,7 @@ optionRouter.put('/:id', userAuth.checkOptionsBeforeUpdateOrDelete, async (req, 
           returning: true,
           plain: true
         })
-    if (!option[0]) {
+    if (option[0]) {
       res.status(404).send({
         message: `Cannot update Option with id=${id}. Maybe Option was not found or req.body is empty!`
       })

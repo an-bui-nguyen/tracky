@@ -9,6 +9,7 @@ import userRouter from './controllers/userController.js'
 import userAuth from './utils/userAuth.js'
 import trackerRouter from './controllers/trackerController.js'
 import optionRouter from './controllers/optionController.js'
+import developerRouter from './controllers/developerController.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -31,6 +32,7 @@ db.sequelize.sync({ alter: true }).then(() => {
 app.use('/api/users', userRouter)
 app.use('/api/trackers', userAuth.authorization, trackerRouter)
 app.use('/api/options', userAuth.authorization, optionRouter)
+app.use('/api/developer', developerRouter)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}.`)

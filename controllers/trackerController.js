@@ -45,13 +45,6 @@ trackerRouter.get('/', async (req, res) => {
   res.status(200).send(trackers)
 })
 
-trackerRouter.get('/all', async (req, res) => {
-  const trackers = await Tracker.findAll({
-    include: [Option]
-  })
-  res.status(200).send(trackers)
-})
-
 trackerRouter.put('/:id', userAuth.checkBeforeUpdateOrDelete, async (req, res) => {
   const trackerId = parseInt(req.params.id)
   const { name, note } = req.body
