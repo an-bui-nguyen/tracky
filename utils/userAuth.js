@@ -115,4 +115,29 @@ const checkOptionsBeforeUpdateOrDelete = async (req, res, next) => {
 
 }
 
-export default { saveUser, authorization, checkBeforeUpdateOrDelete, checkOptionsBeforeUpdateOrDelete }
+const userAuthBeforeEntry = async (req, res, next) => {
+  const userId = parseInt(req.userId)
+  const optionId = parseInt(req.body.optionId)
+
+  try {
+    const option = await Option.findOne({
+      where: {
+        id: optionId
+      }, include: [Tracker]
+    })
+  
+    if (!option) {
+      return res.status(404).send({ message: `Option ${optionId} not found` })
+    }
+  
+    if (userId !== option.tracker.dataValues.userId) {
+      return res.status(403).send({ message: `Unauthorized: Option ${optionId} not yours` })
+    }
+  } catch (error) {
+    return res.status(500).send({ message: error.message })
+  }
+
+  next()
+}
+
+export default { saveUser, authorization, checkBeforeUpdateOrDelete, checkOptionsBeforeUpdateOrDelete, userAuthBeforeEntry }

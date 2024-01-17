@@ -38,6 +38,8 @@ Users.hasMany(Trackers)
 Trackers.belongsTo(Users)
 Trackers.hasMany(Options)
 Options.belongsTo(Trackers)
+Options.hasMany(Entries, { foreignKey: 'optionId' })
+Entries.belongsTo(Options, { foreignKey: 'optionId' })
 
 db.users = Users
 db.trackers = Trackers
