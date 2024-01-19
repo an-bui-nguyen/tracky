@@ -1,3 +1,3 @@
-# Wrappity
+# Tracky
 
-A web application to allow interval-set long text/email updates from social network.
+A PERN web application that allows habit tracking using a user-input colors on a calendar heatmap similar to GitHub's contribution tracker
