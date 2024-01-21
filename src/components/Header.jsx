@@ -2,7 +2,7 @@ export const Header = () => {
   return (
     <div class="container">
       <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <div class="col-md-3 mb-2 mb-md-0">
+        <div class="col-md-3 mb-2 mb-md-0 text-start">
           <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
             Tracky
           </a>
@@ -18,7 +18,7 @@ export const Header = () => {
 
         <div class="col-md-3 text-end">
           <button type="button" class="btn btn-outline-primary me-2">Login</button>
-          <button type="button" class="btn btn-primary">Sign-up</button>
+          <button type="button" class="btn btn-success">Sign-up</button>
         </div>
       </header>
     </div>
