@@ -15,7 +15,9 @@ import entriesRouter from './controllers/entryController.js'
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.use(cors())
+app.use(cors({ credentials: true, origin: true}))
+
+app.options('*', cors())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,6 +31,7 @@ app.get('/', (req, res) => {
 db.sequelize.sync({ alter: true }).then(() => {
   console.log('Drop and re-sync db.')
 })
+
 
 app.use('/api/users', userRouter)
 app.use('/api/trackers', userAuth.authorization, trackerRouter)
