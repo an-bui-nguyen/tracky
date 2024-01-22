@@ -7,8 +7,9 @@ import {
   Route,
   Routes
 } from 'react-router-dom'
-import { LandingPage } from './components/LandingPage'
-import { Header } from './components/Header'
+import LandingPage from './components/LandingPage'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
       </Routes>
+      <Footer />
     </>
   )
 }
