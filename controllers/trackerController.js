@@ -4,6 +4,7 @@ import userAuth from '../utils/userAuth.js'
 
 const Tracker = db.trackers
 const Option = db.options
+const Entry = db.entries
 
 const trackerRouter = express.Router()
 
@@ -40,7 +41,12 @@ trackerRouter.get('/', async (req, res) => {
   const trackers = await Tracker.findAll({
     where: {
       userId: userId
-    }, include: [Option]
+    }, include: {
+      model: Option,
+      include: {
+        model: Entry
+      }
+    }
   })
   res.status(200).send(trackers)
 })

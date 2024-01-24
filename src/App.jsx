@@ -14,7 +14,7 @@ import Dashboard from './components/Dashboard'
 
 function App() {
   return (
-    <div className='mx-auto col-10'>
+    <div className='mx-auto'>
       <Header />
       <Routes>
         <Route path='/' element={<LandingPage />} />
