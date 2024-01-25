@@ -2,8 +2,10 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import trackerService from '../services/trackers'
 import Tracker from './Tracker'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
+  const navigate = useNavigate()
   const [trackers, setTrackers] = useState([])
   useEffect(() => {
     const getTrackers = async () => {
@@ -14,6 +16,10 @@ const Dashboard = () => {
 
     getTrackers()
   }, [])
+
+  if (trackers.message) {
+    navigate('/')
+  }
 
   return (
     <>
